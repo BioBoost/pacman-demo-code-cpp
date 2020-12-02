@@ -24,11 +24,11 @@ $(EXECUTABLE): main.o apple.o controller.o
 main.o: main.cpp
 	$(CC) $(CFLAGS) main.cpp
 
-apple.o: apple.cpp
-	$(CC) $(CFLAGS) apple.cpp
+apple.o: src/apple.cpp
+	$(CC) $(CFLAGS) src/apple.cpp
 
-controller.o: controller.cpp
-	$(CC) $(CFLAGS) controller.cpp
+controller.o: src/controller.cpp
+	$(CC) $(CFLAGS) src/controller.cpp
 
 clean:
 	rm -f *.o $(EXECUTABLE)
