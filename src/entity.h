@@ -3,27 +3,14 @@
 class Entity {
 
   public:
-    Entity(int x, int y) {
-      move(x, y);
-    }
+    Entity(int x, int y);
 
   public:
-    int x() {
-      return _x;
-    }
-
-    int y() {
-      return _y;
-    }
-
-    void move(int x, int y) {
-      _x = x;
-      _y = y;
-    }
+    int x();
+    int y();
   
-  // public:
-  //   virtual void render(void) = 0;
-  //   virtual void update(Canvas * canvas) = 0;
+  public:
+    void move(int x, int y);
 
   private:
     int _x = 0;

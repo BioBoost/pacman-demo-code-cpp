@@ -18,8 +18,8 @@ EXECUTABLE=pacman
 all: $(EXECUTABLE)
 
 # The executable depends on all the separate object files
-$(EXECUTABLE): main.o apple.o controller.o
-	$(CC) main.o apple.o controller.o -o $(EXECUTABLE)
+$(EXECUTABLE): main.o apple.o controller.o canvas.o pacman.o wall.o entity.o game.o
+	$(CC) main.o apple.o controller.o canvas.o pacman.o wall.o entity.o game.o -o $(EXECUTABLE)
 
 main.o: main.cpp
 	$(CC) $(CFLAGS) main.cpp
@@ -27,8 +27,23 @@ main.o: main.cpp
 apple.o: src/apple.cpp
 	$(CC) $(CFLAGS) src/apple.cpp
 
+canvas.o: src/canvas.cpp
+	$(CC) $(CFLAGS) src/canvas.cpp
+
 controller.o: src/controller.cpp
 	$(CC) $(CFLAGS) src/controller.cpp
+
+pacman.o: src/pacman.cpp
+	$(CC) $(CFLAGS) src/pacman.cpp
+
+wall.o: src/wall.cpp
+	$(CC) $(CFLAGS) src/wall.cpp
+
+entity.o: src/entity.cpp
+	$(CC) $(CFLAGS) src/entity.cpp
+
+game.o: src/game.cpp
+	$(CC) $(CFLAGS) src/game.cpp
 
 clean:
 	rm -f *.o $(EXECUTABLE)
