@@ -1,5 +1,6 @@
 #pragma once
 
+#include "entity.h"
 #include "direction.h"
 #include "canvas.h"
 
@@ -8,23 +9,14 @@
 //   int y;
 // }
 
-class PacMan {
+class PacMan : public Entity {
 
   public:
-    PacMan(int x, int y) {
-      _x = x;
-      _y = y;
+    PacMan(int x, int y)
+      : Entity(x, y) {
     }
 
   public:
-    int x() {
-      return _x;
-    }
-
-    int y() {
-      return _y;
-    }
-
     void render(Canvas * canvas) {
       switch(direction) {
         case Direction::LEFT: canvas->draw_symbol(x(), y(), '>'); break;
@@ -39,22 +31,27 @@ class PacMan {
     }
 
     void update(void) {
-      switch(direction) {
-        case Direction::LEFT: _x -= speed; break;
-        case Direction::RIGHT: _x += speed; break;
-        case Direction::UP: _y -= speed; break;
-        case Direction::DOWN: _y+= speed; break;
-      }
+      int x = 0;
+      int y = 0;
+      next_position(&x, &y);
+      Entity::move(x, y);   // move of Entity !
+
+      // switch(direction) {
+      //   case Direction::LEFT: _x -= speed; break;
+      //   case Direction::RIGHT: _x += speed; break;
+      //   case Direction::UP: _y -= speed; break;
+      //   case Direction::DOWN: _y+= speed; break;
+      // }
     }
 
     void next_position(int * x, int * y) {
-      *x = _x;
-      *y = _y;
+      *x = this->x();
+      *y = this->y();
       switch(direction) {
-        case Direction::LEFT: *x = _x - speed; break;
-        case Direction::RIGHT: *x = _x + speed; break;
-        case Direction::UP: *y = _y - speed; break;
-        case Direction::DOWN: *y = _y + speed; break;
+        case Direction::LEFT: *x = this->x() - speed; break;
+        case Direction::RIGHT: *x = this->x() + speed; break;
+        case Direction::UP: *y = this->y() - speed; break;
+        case Direction::DOWN: *y = this->y() + speed; break;
       }
     }
 
@@ -81,10 +78,6 @@ class PacMan {
     }
 
   private:
-    int _x = 0;
-    int _y = 0;
-
     int speed = 1;
-
     Direction direction = Direction::LEFT;
 };

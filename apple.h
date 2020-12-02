@@ -1,29 +1,13 @@
 #pragma once
 
 #include "canvas.h"
+#include "entity.h"
 
-class Apple {
-
-  public:
-    Apple(int x, int y) {
-      _x = x;
-      _y = y;
-    }
+class Apple : public Entity  {
 
   public:
-    int x() {
-      return _x;
-    }
+    Apple(int x, int y);
 
-    int y() {
-      return _y;
-    }
-
-    void render(Canvas * canvas) {
-      canvas->draw_symbol(x(), y(), 'o');
-    }
-
-  private:
-    int _x = 0;
-    int _y = 0;
+  public:
+    void render(Canvas * canvas);
 };

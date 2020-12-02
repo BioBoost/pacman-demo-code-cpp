@@ -1,29 +1,19 @@
 #pragma once
 
+#include "entity.h"
 #include "canvas.h"
 
-class Wall {
+// Overerving = inheritance
+class Wall : public Entity {
 
   public:
-    Wall(int x, int y) {
-      _x = x;
-      _y = y;
+    Wall(int x, int y)
+      : Entity(x, y) {
     }
 
   public:
-    int x() {
-      return _x;
-    }
-
-    int y() {
-      return _y;
-    }
-
     void render(Canvas * canvas) {
       canvas->draw_symbol(x(), y(), '#');
     }
 
-  private:
-    int _x = 0;
-    int _y = 0;
 };

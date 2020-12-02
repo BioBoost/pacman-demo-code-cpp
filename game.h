@@ -8,11 +8,16 @@
 #include <unistd.h>   // usleep
 #include "controller.h"   // Keyboard input
 
+#include <stdlib.h>     /* srand, rand */
+#include <time.h>       /* time */
+
 class Game {
 
   public:
     Game(void)
       : pacman(25, 5) {
+
+      srand(time(NULL));
 
       create_walls();
       create_apples();
@@ -115,6 +120,7 @@ class Game {
 
       if (appleToEat >= 0) {
         apples.erase(apples.begin() + appleToEat);
+        apples.push_back(Apple(1+rand()%(WIDTH-2), 1+rand()%(HEIGHT-2)));
       }
     }
 
