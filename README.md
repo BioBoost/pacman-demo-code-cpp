@@ -2,6 +2,8 @@
 
 Demo code for how to build a PacMan game in C++.
 
+![Screenshot](./img/screenshot.png)
+
 ## Build and run
 
 Currently only tested on Linux.
